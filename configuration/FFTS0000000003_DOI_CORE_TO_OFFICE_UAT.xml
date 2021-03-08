@@ -1,0 +1,12 @@
+<?xml version='1.0' encoding='utf-8'?>
+<configData>
+<project_variable><project_name>dest.array</project_name><project_value>dest_resource /dest/</project_value></project_variable>
+<project_variable><project_name>app.support.team</project_name><project_value>PLEASE-SUPPRESS-INCIDENT</project_value></project_variable>
+<project_variable><project_name>app.support.callout</project_name><project_value>TICKET</project_value></project_variable>
+<project_variable><project_name>app.support.team.email.id</project_name><project_value>null</project_value></project_variable>
+<project_variable><project_name>short.retry.failure.email</project_name><project_value>null</project_value></project_variable>
+<project_variable><project_name>long.retry.email</project_name><project_value>null</project_value></project_variable>
+<project_variable><project_name>source.resource</project_name><project_value>src_resource</project_value></project_variable>
+<project_variable><project_name>source.folder</project_name><project_value>/src</project_value></project_variable>
+<project_variable><project_name>project.desc</project_name><project_value>null</project_value></project_variable>
+</configData>

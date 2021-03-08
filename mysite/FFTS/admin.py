@@ -19,8 +19,8 @@ admin.site.index_title = 'Middleware Index'
 # disable delete site-wide action
 admin.site.disable_action('delete_selected')
 
-configdir = "D://"
-configtpl = "D://template.xml"
+configdir = "D://WORKSPACE//PSN-WORKSPACE//Django-Demo\configuration//"
+configtpl = "D://WORKSPACE//PSN-WORKSPACE//Django-Demo\configuration//template.xml"
 
 
 # Register your models here.
@@ -137,6 +137,7 @@ class ProjectAdmin(AjaxAdmin):
       self.message_user(request, 'Synchronize initialization successfully!', messages.SUCCESS)
     else:
       self.message_user(request, 'ONLY SYNC_INIT_FROM_CONFIGURATION CAN BE SELECTED!', messages.WARNING)
+
   sync_init_configfile.type = 'danger'
   sync_init_configfile.icon = 'el-icon-setting'
   sync_init_configfile.confirm = 'ARE YOU SURE TO SYNCHRONIZE INITIALIZATION???'
@@ -165,6 +166,7 @@ class ProjectAdmin(AjaxAdmin):
                       ngettext('%d project synchronized from configfile successfully!',
                                '%d projects synchronized from configfile successfully!', count) % count,
                       messages.SUCCESS)
+
   sync_from_configfile.type = 'info'
   sync_from_configfile.icon = 'el-icon-receiving'
   sync_from_configfile.confirm = 'ARE YOU SURE TO SYNCHRONIZE FROM CONFIGFILE???'
@@ -197,6 +199,7 @@ class ProjectAdmin(AjaxAdmin):
                       ngettext('%d project synchronized to configfile successfully!',
                                '%d projects synchronized to configfile successfully!', count) % count,
                       messages.SUCCESS)
+
   sync_to_configfile.type = 'success'
   sync_to_configfile.icon = 'el-icon-magic-stick'
   sync_to_configfile.confirm = 'ARE YOU SURE TO SYNCHRONIZE TO CONFIGFILE???'
@@ -249,7 +252,7 @@ class ProjectAdmin(AjaxAdmin):
         if 'SYNC_INIT_FROM_CONFIGURATION' == obj.ffts_id:
           self.message_user(request, 'SYNC_INIT_FROM_CONFIGURATION IGNORED!', messages.WARNING)
         else:
-          obj.ffts_id = obj.ffts_id[:obj.ffts_id.rfind('_')+1] + promotion_env
+          obj.ffts_id = obj.ffts_id[:obj.ffts_id.rfind('_') + 1] + promotion_env
           obj.business_flow = obj.ffts_id.split('_', 1)[1]
           obj.config_sync = 'N'
           obj.CREATED_BY = request.user.username
@@ -268,6 +271,7 @@ class ProjectAdmin(AjaxAdmin):
         'msg': ngettext('%d project promoted successfully!',
                         '%d projects promoted successfully!', count) % count
       })
+
   # promote_project.short_description = "Promote project"
   promote_project.type = 'warning'
   promote_project.icon = 'el-icon-s-promotion'
