@@ -9,7 +9,7 @@ https://docs.djangoproject.com/en/3.1/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.1/ref/settings/
 """
-
+import os
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -19,10 +19,13 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '7%-89@%b&e2z-!58$_aphn*y8oh46qfakoop=ubo@#i*dt^*ev'
+# SECRET_KEY = '7%-89@%b&e2z-!58$_aphn*y8oh46qfakoop=ubo@#i*dt^*ev'
+SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', '7%-89@%b&e2z-!58$_aphn*y8oh46qfakoop=ubo@#i*dt^*ev')
 
 # SECURITY WARNING: don't run with debug turned on in production!
+# 默认情况下，DEBUG的值为True，但如果DJANGO_DEBUG环境变量的值，设置为空字符串，则为False，例如，DJANGO_DEBUG=''。
 DEBUG = True
+DEBUG = bool(os.environ.get('DJANGO_DEBUG', True))
 
 ALLOWED_HOSTS = []
 
@@ -133,7 +136,7 @@ STATICFILES_DIRS = [
 STATIC_ROOT = BASE_DIR / "static_deploy"
 
 # simpleui configuration
-SIMPLEUI_STATIC_OFFLINE = True # 离线模式
+SIMPLEUI_STATIC_OFFLINE = True  # 离线模式
 SIMPLEUI_ANALYSIS = False
 SIMPLEUI_HOME_PAGE = ''
 SIMPLEUI_HOME_TITLE = 'HOME'
