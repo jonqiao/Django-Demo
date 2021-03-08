@@ -19,8 +19,8 @@ admin.site.index_title = 'Middleware Index'
 # disable delete site-wide action
 admin.site.disable_action('delete_selected')
 
-configdir = "D://WORKSPACE//PSN-WORKSPACE//Django-Demo\configuration//"
-configtpl = "D://WORKSPACE//PSN-WORKSPACE//Django-Demo\configuration//template.xml"
+configdir = "D://WORKSPACE//PSN-WORKSPACE//Django-Demo//configuration//"
+configtpl = "D://WORKSPACE//PSN-WORKSPACE//Django-Demo//configuration//template.xml"
 
 
 # Register your models here.
