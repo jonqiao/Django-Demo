@@ -24,10 +24,10 @@ SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', '7%-89@%b&e2z-!58$_aphn*y8oh46q
 
 # SECURITY WARNING: don't run with debug turned on in production!
 # 默认情况下，DEBUG的值为True，但如果DJANGO_DEBUG环境变量的值，设置为空字符串，则为False，例如，DJANGO_DEBUG=''。
-DEBUG = True
 DEBUG = bool(os.environ.get('DJANGO_DEBUG', True))
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 # Application definition
 
@@ -129,11 +129,11 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 STATICFILES_DIRS = [
-  BASE_DIR / "static",
+  BASE_DIR / "static_common",
 ]
 
-# STATIC_ROOT = os.path.join(BASE_DIR, "static_deploy")
-STATIC_ROOT = BASE_DIR / "static_deploy"
+# STATIC_ROOT = os.path.join(BASE_DIR, "static")
+STATIC_ROOT = BASE_DIR / "static_root"
 
 # simpleui configuration
 SIMPLEUI_STATIC_OFFLINE = True  # 离线模式
@@ -162,3 +162,7 @@ SIMPLEUI_CONFIG = {
     }]
   }]
 }
+
+# Application customer properties
+configdir = "D://WORKSPACE//PSN-WORKSPACE//Django-Demo//configuration//"
+configtpl = "D://WORKSPACE//PSN-WORKSPACE//Django-Demo//configuration//template.xml"

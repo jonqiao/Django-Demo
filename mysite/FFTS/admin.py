@@ -1,16 +1,19 @@
 import urllib
 import urllib.parse
 import urllib.request
-from xml.etree.ElementTree import ElementTree
-from django.contrib import admin, messages
-from django.http import JsonResponse
-from django.utils import timezone
-from simpleui.admin import AjaxAdmin
-from django.core import serializers
-from django.utils.translation import ngettext
+from datetime import datetime
 from pathlib import Path
 from shutil import copy, copy2
-from datetime import datetime
+from xml.etree.ElementTree import ElementTree
+
+from django.conf import settings
+from django.contrib import admin, messages
+from django.core import serializers
+from django.http import JsonResponse
+from django.utils import timezone
+from django.utils.translation import ngettext
+from simpleui.admin import AjaxAdmin
+
 from .models import Project
 
 admin.site.site_title = 'TIS MIDDLEWARE'
@@ -18,9 +21,6 @@ admin.site.site_header = 'TIS Middleware'
 admin.site.index_title = 'Middleware Index'
 # disable delete site-wide action
 admin.site.disable_action('delete_selected')
-
-configdir = "D://WORKSPACE//PSN-WORKSPACE//Django-Demo//configuration//"
-configtpl = "D://WORKSPACE//PSN-WORKSPACE//Django-Demo//configuration//template.xml"
 
 
 # Register your models here.
@@ -105,7 +105,7 @@ class ProjectAdmin(AjaxAdmin):
   def delete_model(self, request, obj):
     # if configfile exist, rename it with datetime suffix
     dt = datetime.now().strftime('%Y%m%d%H%M%S')
-    configfile = configdir + obj.ffts_id + '.xml'
+    configfile = settings.configdir + obj.ffts_id + '.xml'
     configbak = configfile + '.' + dt + '.del'
     if Path(configfile).is_file():
       # os.rename(configfile, configbak)
@@ -120,7 +120,7 @@ class ProjectAdmin(AjaxAdmin):
     3: update model config_sync = 'Y' and strategy = 'Trigger' or 'Polling'
     """
     if len(queryset) == 1 and 'SYNC_INIT_FROM_CONFIGURATION' == queryset[0].ffts_id:
-      for configfile in Path(configdir).glob('FFTS*.xml'):
+      for configfile in Path(settings.configdir).glob('FFTS*.xml'):
         ffts_id = configfile.name.split('.')[0]
         obj = Project.objects.filter(ffts_id=ffts_id)
         if not obj:
@@ -153,7 +153,7 @@ class ProjectAdmin(AjaxAdmin):
       if 'SYNC_INIT_FROM_CONFIGURATION' == obj.ffts_id:
         self.message_user(request, 'SYNC_INIT_FROM_CONFIGURATION IGNORED!', messages.WARNING)
       else:
-        configfile = configdir + obj.ffts_id + '.xml'
+        configfile = settings.configdir + obj.ffts_id + '.xml'
         if Path(configfile).is_file():
           sync_from_xml(configfile, obj)
           obj.config_sync = 'Y'
@@ -185,12 +185,12 @@ class ProjectAdmin(AjaxAdmin):
         self.message_user(request, 'SYNC_INIT_FROM_CONFIGURATION IGNORED!', messages.WARNING)
       else:
         dt = datetime.now().strftime('%Y%m%d%H%M%S')
-        configfile = configdir + obj.ffts_id + '.xml'
+        configfile = settings.configdir + obj.ffts_id + '.xml'
         configbak = configfile + '.' + dt + '.bak'
         if Path(configfile).is_file():
           copy2(configfile, configbak)
         else:
-          copy(configtpl, configfile)
+          copy(settings.configtpl, configfile)
         sync_to_xml(configfile, obj)
         obj.config_sync = 'Y'
         obj.save()
