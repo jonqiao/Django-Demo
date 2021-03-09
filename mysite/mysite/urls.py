@@ -16,7 +16,7 @@ Including another URLconf
 from django.conf import settings
 from django.conf.urls import url
 from django.contrib import admin
-from django.urls import include, path, re_path
+from django.urls import include, path
 from django.views import static
 
 urlpatterns = [
@@ -24,6 +24,7 @@ urlpatterns = [
   path('login/', include('login.urls')),
   path('polls/', include('polls.urls')),
   path('ffts/', include('FFTS.urls')),
+  url('favicon.ico', static.serve, {'document_root': settings.STATIC_ROOT, 'path': 'favicon.ico'}),
   url(r'^static/(?P<path>.*)$', static.serve, {'document_root': settings.STATIC_ROOT}, name='static'),
   # re_path('static/(?P<path>.*)', static.serve, {'document_root': settings.STATIC_ROOT}),
 ]
