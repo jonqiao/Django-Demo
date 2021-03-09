@@ -25,7 +25,7 @@ SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', '7%-89@%b&e2z-!58$_aphn*y8oh46q
 # SECURITY WARNING: don't run with debug turned on in production!
 # 默认情况下，DEBUG的值为True，但如果DJANGO_DEBUG环境变量的值，设置为空字符串，则为False，例如，DJANGO_DEBUG=''。
 DEBUG = bool(os.environ.get('DJANGO_DEBUG', True))
-DEBUG = False
+# DEBUG = False
 
 ALLOWED_HOSTS = ['*']
 
@@ -164,5 +164,7 @@ SIMPLEUI_CONFIG = {
 }
 
 # Application customer properties
-configdir = "D://WORKSPACE//PSN-WORKSPACE//Django-Demo//configuration//"
-configtpl = "D://WORKSPACE//PSN-WORKSPACE//Django-Demo//configuration//template.xml"
+CONFIGDIR = "D://WORKSPACE//PSN-WORKSPACE//Django-Demo//configuration//"
+CONFIGTPL = "D://WORKSPACE//PSN-WORKSPACE//Django-Demo//configuration//template.xml"
+REMOTE_LINK_PRD = "http://127.0.0.1:8000/ffts/api/project/"
+REMOTE_LINK_NONPRD = "http://127.0.0.1:8000/ffts/api/project/"

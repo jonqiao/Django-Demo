@@ -105,7 +105,7 @@ class ProjectAdmin(AjaxAdmin):
   def delete_model(self, request, obj):
     # if configfile exist, rename it with datetime suffix
     dt = datetime.now().strftime('%Y%m%d%H%M%S')
-    configfile = settings.configdir + obj.ffts_id + '.xml'
+    configfile = settings.CONFIGDIR + obj.ffts_id + '.xml'
     configbak = configfile + '.' + dt + '.del'
     if Path(configfile).is_file():
       # os.rename(configfile, configbak)
@@ -120,7 +120,8 @@ class ProjectAdmin(AjaxAdmin):
     3: update model config_sync = 'Y' and strategy = 'Trigger' or 'Polling'
     """
     if len(queryset) == 1 and 'SYNC_INIT_FROM_CONFIGURATION' == queryset[0].ffts_id:
-      for configfile in Path(settings.configdir).glob('FFTS*.xml'):
+      count = 0
+      for configfile in Path(settings.CONFIGDIR).glob('FFTS*.xml'):
         ffts_id = configfile.name.split('.')[0]
         obj = Project.objects.filter(ffts_id=ffts_id)
         if not obj:
@@ -132,9 +133,13 @@ class ProjectAdmin(AjaxAdmin):
           obj.CREATED_BY = request.user.username
           obj.UPDATED_BY = request.user.username
           obj.save()
+          count = count + 1
       queryset[0].config_sync = 'Y'
       queryset[0].save()
-      self.message_user(request, 'Synchronize initialization successfully!', messages.SUCCESS)
+      self.message_user(request,
+                        ngettext('%d project synchronized initialization successfully!',
+                                 '%d projects synchronized initialization successfully!', count) % count,
+                        messages.SUCCESS)
     else:
       self.message_user(request, 'ONLY SYNC_INIT_FROM_CONFIGURATION CAN BE SELECTED!', messages.WARNING)
 
@@ -153,7 +158,7 @@ class ProjectAdmin(AjaxAdmin):
       if 'SYNC_INIT_FROM_CONFIGURATION' == obj.ffts_id:
         self.message_user(request, 'SYNC_INIT_FROM_CONFIGURATION IGNORED!', messages.WARNING)
       else:
-        configfile = settings.configdir + obj.ffts_id + '.xml'
+        configfile = settings.CONFIGDIR + obj.ffts_id + '.xml'
         if Path(configfile).is_file():
           sync_from_xml(configfile, obj)
           obj.config_sync = 'Y'
@@ -185,12 +190,12 @@ class ProjectAdmin(AjaxAdmin):
         self.message_user(request, 'SYNC_INIT_FROM_CONFIGURATION IGNORED!', messages.WARNING)
       else:
         dt = datetime.now().strftime('%Y%m%d%H%M%S')
-        configfile = settings.configdir + obj.ffts_id + '.xml'
+        configfile = settings.CONFIGDIR + obj.ffts_id + '.xml'
         configbak = configfile + '.' + dt + '.bak'
         if Path(configfile).is_file():
           copy2(configfile, configbak)
         else:
-          copy(settings.configtpl, configfile)
+          copy(settings.CONFIGTPL, configfile)
         sync_to_xml(configfile, obj)
         obj.config_sync = 'Y'
         obj.save()
@@ -244,9 +249,9 @@ class ProjectAdmin(AjaxAdmin):
       # 这里获取到数据后，可以做些业务处理
       promotion_env = post.get('promote_env')
       if promotion_env == 'PRD':
-        remote_link = "http://127.0.0.1:8000/ffts/api/project/"
+        remote_link = settings.REMOTE_LINK_PRD
       else:
-        remote_link = "http://127.0.0.1:8000/ffts/api/project/"
+        remote_link = settings.REMOTE_LINK_NONPRD
       count = 0
       for obj in queryset:
         if 'SYNC_INIT_FROM_CONFIGURATION' == obj.ffts_id:
