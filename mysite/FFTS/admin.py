@@ -1,7 +1,6 @@
 import urllib
 import urllib.parse
 import urllib.request
-from datetime import datetime
 from pathlib import Path
 from shutil import copy, copy2
 from xml.etree.ElementTree import ElementTree
@@ -99,13 +98,13 @@ class ProjectAdmin(AjaxAdmin):
       obj.UPDATED_BY = request.user.username
       obj.save()
     if not obj.ffts_id or obj.ffts_id == 'Auto-Generation':
-      # obj.ffts_id = 'FFTS' + str(datetime.now().strftime('%y%j%H%M%S')) + '_' + obj.business_flow
+      # obj.ffts_id = 'FFTS' + str(timezone.now().strftime('%y%j%H%M%S')) + '_' + obj.business_flow
       obj.ffts_id = 'FFTS' + str(obj.id).rjust(10, '0') + '_' + obj.business_flow
     obj.save()
 
   def delete_model(self, request, obj):
     # if configfile exist, rename it with datetime suffix
-    dt = datetime.now().strftime('%Y%m%d%H%M%S')
+    dt = timezone.now().strftime('%Y%m%d%H%M%S')
     configfile = settings.CONFIGDIR + obj.ffts_id + '.xml'
     configbak = configfile + '.' + dt + '.del'
     if Path(configfile).is_file():
@@ -190,7 +189,7 @@ class ProjectAdmin(AjaxAdmin):
       if 'SYNC_INIT_FROM_CONFIGURATION' == obj.ffts_id:
         self.message_user(request, 'SYNC_INIT_FROM_CONFIGURATION IGNORED!', messages.WARNING)
       else:
-        dt = datetime.now().strftime('%Y%m%d%H%M%S')
+        dt = timezone.now().strftime('%Y%m%d%H%M%S')
         configfile = settings.CONFIGDIR + obj.ffts_id + '.xml'
         configbak = configfile + '.' + dt + '.bak'
         if Path(configfile).is_file():
