@@ -4,15 +4,14 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
+  dependencies = [
+    ('polls', '0005_auto_20210228_1458'),
+  ]
 
-    dependencies = [
-        ('polls', '0005_auto_20210228_1458'),
-    ]
-
-    operations = [
-        migrations.AddField(
-            model_name='question',
-            name='sync_config',
-            field=models.CharField(default='N', max_length=3, verbose_name='sync_config'),
-        ),
-    ]
+  operations = [
+    migrations.AddField(
+      model_name='question',
+      name='sync_config',
+      field=models.CharField(default='N', max_length=3, verbose_name='sync_config'),
+    ),
+  ]

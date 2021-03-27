@@ -5,28 +5,28 @@
   <title>Login</title>
 </head>
 <body>
-  <h1>用户输入：</h1>
-  <form action="/login/" method="post">
-    {% csrf_token %}
-    用户名：<input type="text" name="username" /><br />
-    密码：<input type="password" name="password" /><br />
-    <input type="submit" value="提交" />
-  </form>
-  <h1>用户展示：</h1>
-  <table border="1">
-      <thead>
-          <tr>用户名</tr>
-          <tr>密码</tr>
-      </thead>
-      <tbody>
-          {% for item in data %}
-          <tr>
-              <td>{{ item.username }}</td>
-              <td>{{ item.password }}</td>
-          </tr>
-          {% endfor %}
-      </tbody>
-  </table>
-  <script src="/static/js/jquery.min.js"></script>
+<h1>用户输入：</h1>
+<form action="/login/" method="post">
+  {% csrf_token %}
+  用户名：<input type="text" name="username"/><br/>
+  密码：<input type="password" name="password"/><br/>
+  <input type="submit" value="提交"/>
+</form>
+<h1>用户展示：</h1>
+<table border="1">
+  <thead>
+  <tr>用户名</tr>
+  <tr>密码</tr>
+  </thead>
+  <tbody>
+  {% for item in data %}
+  <tr>
+    <td>{{ item.username }}</td>
+    <td>{{ item.password }}</td>
+  </tr>
+  {% endfor %}
+  </tbody>
+</table>
+<script src="/static/js/jquery.min.js"></script>
 </body>
 </html>

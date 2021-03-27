@@ -1,8 +1,6 @@
-from django.http import HttpResponse, JsonResponse
 from django.core import serializers
+from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
-
-from .models import Project
 
 
 # Create your views here.

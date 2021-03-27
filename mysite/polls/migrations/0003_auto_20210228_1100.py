@@ -4,30 +4,29 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
+  dependencies = [
+    ('polls', '0002_auto_20210228_1006'),
+  ]
 
-    dependencies = [
-        ('polls', '0002_auto_20210228_1006'),
-    ]
-
-    operations = [
-        migrations.AlterField(
-            model_name='choice',
-            name='choice_text',
-            field=models.CharField(max_length=200, verbose_name='choice desc'),
-        ),
-        migrations.AlterField(
-            model_name='choice',
-            name='votes',
-            field=models.IntegerField(default=0, verbose_name='choice votes'),
-        ),
-        migrations.AlterField(
-            model_name='question',
-            name='pub_date',
-            field=models.DateTimeField(verbose_name='date published'),
-        ),
-        migrations.AlterField(
-            model_name='question',
-            name='question_text',
-            field=models.CharField(max_length=200, verbose_name='question desc'),
-        ),
-    ]
+  operations = [
+    migrations.AlterField(
+      model_name='choice',
+      name='choice_text',
+      field=models.CharField(max_length=200, verbose_name='choice desc'),
+    ),
+    migrations.AlterField(
+      model_name='choice',
+      name='votes',
+      field=models.IntegerField(default=0, verbose_name='choice votes'),
+    ),
+    migrations.AlterField(
+      model_name='question',
+      name='pub_date',
+      field=models.DateTimeField(verbose_name='date published'),
+    ),
+    migrations.AlterField(
+      model_name='question',
+      name='question_text',
+      field=models.CharField(max_length=200, verbose_name='question desc'),
+    ),
+  ]

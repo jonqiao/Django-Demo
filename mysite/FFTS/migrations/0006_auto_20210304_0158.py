@@ -4,20 +4,19 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
+  dependencies = [
+    ('FFTS', '0005_auto_20210303_2315'),
+  ]
 
-    dependencies = [
-        ('FFTS', '0005_auto_20210303_2315'),
-    ]
-
-    operations = [
-        migrations.RemoveField(
-            model_name='project',
-            name='ffts_id',
-        ),
-        migrations.AddField(
-            model_name='project',
-            name='business_flow',
-            field=models.CharField(default='Jon', help_text='e.g.: BU_SRC_TO_DEST_UAT', max_length=128, verbose_name='Business Flow'),
-            preserve_default=False,
-        ),
-    ]
+  operations = [
+    migrations.RemoveField(
+      model_name='project',
+      name='ffts_id',
+    ),
+    migrations.AddField(
+      model_name='project',
+      name='business_flow',
+      field=models.CharField(default='Jon', help_text='e.g.: BU_SRC_TO_DEST_UAT', max_length=128, verbose_name='Business Flow'),
+      preserve_default=False,
+    ),
+  ]

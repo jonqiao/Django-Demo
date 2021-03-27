@@ -1,8 +1,9 @@
 from django.urls import path
-from . import views
-from . import apps
 
-app_name = apps.PollsConfig.name   # 重点是这一行
+from . import apps
+from . import views
+
+app_name = apps.PollsConfig.name  # 重点是这一行
 
 urlpatterns = [
   path('fbv/', views.fbv_index, name='fbvIndex'),

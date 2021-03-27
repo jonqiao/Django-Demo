@@ -4,15 +4,15 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
+  dependencies = [
+    ('polls', '0011_auto_20210228_2355'),
+  ]
 
-    dependencies = [
-        ('polls', '0011_auto_20210228_2355'),
-    ]
-
-    operations = [
-        migrations.AlterField(
-            model_name='choice',
-            name='choice_text',
-            field=models.CharField(choices=[(1, 'BMW'), (2, 'Mercedes Benz'), (3, 'AUDI'), (3, 'LEXUS'), (3, 'Apple'), (3, 'Grape'), (3, 'Orange')], help_text='please choice one...', max_length=200, verbose_name='choice'),
-        ),
-    ]
+  operations = [
+    migrations.AlterField(
+      model_name='choice',
+      name='choice_text',
+      field=models.CharField(choices=[(1, 'BMW'), (2, 'Mercedes Benz'), (3, 'AUDI'), (3, 'LEXUS'), (3, 'Apple'), (3, 'Grape'), (3, 'Orange')],
+                             help_text='please choice one...', max_length=200, verbose_name='choice'),
+    ),
+  ]

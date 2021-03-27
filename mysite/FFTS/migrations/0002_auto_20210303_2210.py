@@ -4,20 +4,19 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
+  dependencies = [
+    ('FFTS', '0001_initial'),
+  ]
 
-    dependencies = [
-        ('FFTS', '0001_initial'),
-    ]
-
-    operations = [
-        migrations.AlterField(
-            model_name='project',
-            name='source_array',
-            field=models.CharField(default='null', max_length=1024, verbose_name='Source'),
-        ),
-        migrations.AlterField(
-            model_name='project',
-            name='source_dir',
-            field=models.CharField(default='null', max_length=256, verbose_name='Source DIR'),
-        ),
-    ]
+  operations = [
+    migrations.AlterField(
+      model_name='project',
+      name='source_array',
+      field=models.CharField(default='null', max_length=1024, verbose_name='Source'),
+    ),
+    migrations.AlterField(
+      model_name='project',
+      name='source_dir',
+      field=models.CharField(default='null', max_length=256, verbose_name='Source DIR'),
+    ),
+  ]

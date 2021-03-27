@@ -4,26 +4,25 @@ from django.db import migrations
 
 
 class Migration(migrations.Migration):
+  dependencies = [
+    ('polls', '0004_auto_20210228_1430'),
+  ]
 
-    dependencies = [
-        ('polls', '0004_auto_20210228_1430'),
-    ]
-
-    operations = [
-        migrations.RemoveField(
-            model_name='choice',
-            name='CREATED_BY',
-        ),
-        migrations.RemoveField(
-            model_name='choice',
-            name='CREATED_TIME',
-        ),
-        migrations.RemoveField(
-            model_name='choice',
-            name='UPDATED_BY',
-        ),
-        migrations.RemoveField(
-            model_name='choice',
-            name='UPDATED_TIME',
-        ),
-    ]
+  operations = [
+    migrations.RemoveField(
+      model_name='choice',
+      name='CREATED_BY',
+    ),
+    migrations.RemoveField(
+      model_name='choice',
+      name='CREATED_TIME',
+    ),
+    migrations.RemoveField(
+      model_name='choice',
+      name='UPDATED_BY',
+    ),
+    migrations.RemoveField(
+      model_name='choice',
+      name='UPDATED_TIME',
+    ),
+  ]

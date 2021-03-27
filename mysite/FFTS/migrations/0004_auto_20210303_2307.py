@@ -4,20 +4,19 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
+  dependencies = [
+    ('FFTS', '0003_auto_20210303_2211'),
+  ]
 
-    dependencies = [
-        ('FFTS', '0003_auto_20210303_2211'),
-    ]
-
-    operations = [
-        migrations.AlterField(
-            model_name='project',
-            name='config_sync',
-            field=models.CharField(default='N', max_length=1, verbose_name='Config Sync?'),
-        ),
-        migrations.AlterField(
-            model_name='project',
-            name='strategy',
-            field=models.CharField(choices=[('Polling', 'Polling'), ('Trigger', 'Trigger')], max_length=8, verbose_name='Strategy'),
-        ),
-    ]
+  operations = [
+    migrations.AlterField(
+      model_name='project',
+      name='config_sync',
+      field=models.CharField(default='N', max_length=1, verbose_name='Config Sync?'),
+    ),
+    migrations.AlterField(
+      model_name='project',
+      name='strategy',
+      field=models.CharField(choices=[('Polling', 'Polling'), ('Trigger', 'Trigger')], max_length=8, verbose_name='Strategy'),
+    ),
+  ]

@@ -18,7 +18,7 @@ from .models import Project
 
 admin.site.site_title = 'TIS MIDDLEWARE'
 admin.site.site_header = 'TIS Middleware'
-admin.site.index_title = 'Middleware Index'
+admin.site.index_title = 'Middleware'
 # disable delete site-wide action
 admin.site.disable_action('delete_selected')
 

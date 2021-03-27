@@ -4,21 +4,20 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
+  dependencies = [
+    ('FFTS', '0008_auto_20210304_0223'),
+  ]
 
-    dependencies = [
-        ('FFTS', '0008_auto_20210304_0223'),
-    ]
-
-    operations = [
-        migrations.AddField(
-            model_name='project',
-            name='ffts_id',
-            field=models.CharField(default='Jon', help_text='e.g.: BU_SRC_TO_DEST_UAT', max_length=64, verbose_name='FFTS ID'),
-            preserve_default=False,
-        ),
-        migrations.AlterField(
-            model_name='project',
-            name='business_flow',
-            field=models.CharField(help_text='e.g.: BU_SRC_TO_DEST_UAT', max_length=40, verbose_name='Business Flow'),
-        ),
-    ]
+  operations = [
+    migrations.AddField(
+      model_name='project',
+      name='ffts_id',
+      field=models.CharField(default='Jon', help_text='e.g.: BU_SRC_TO_DEST_UAT', max_length=64, verbose_name='FFTS ID'),
+      preserve_default=False,
+    ),
+    migrations.AlterField(
+      model_name='project',
+      name='business_flow',
+      field=models.CharField(help_text='e.g.: BU_SRC_TO_DEST_UAT', max_length=40, verbose_name='Business Flow'),
+    ),
+  ]

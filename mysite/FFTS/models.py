@@ -14,7 +14,8 @@ class Project(models.Model):
   dest_array = models.CharField('dest.array', max_length=1024, default='null')
   dest_array_help = models.CharField('dest.array.help', max_length=1024, default='sftp', choices=(('sftp', 'sftp'), ('ftps', 'ftps'), ('s3', 's3')))
   app_support_team = models.CharField('app.support.team', max_length=128, default='PLEASE-SUPPRESS-INCIDENT')
-  app_support_callout = models.CharField('app.support.callout', max_length=6, default='TICKET', choices=(('BHO', 'BHO'), ('7x24', '7x24'), ('TICKET', 'TICKET')))
+  app_support_callout = models.CharField('app.support.callout', max_length=6, default='TICKET',
+                                         choices=(('BHO', 'BHO'), ('7x24', '7x24'), ('TICKET', 'TICKET')))
   app_support_team_email_id = models.CharField('app.support.team.email.id', max_length=256, default='null')
   short_retry_failure_email = models.CharField('short.retry.failure.email', max_length=256, default='null')
   long_retry_email = models.CharField('long.retry.email', max_length=256, default='null')

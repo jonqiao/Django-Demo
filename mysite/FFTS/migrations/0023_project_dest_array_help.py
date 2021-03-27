@@ -4,15 +4,14 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
+  dependencies = [
+    ('FFTS', '0022_auto_20210307_0000'),
+  ]
 
-    dependencies = [
-        ('FFTS', '0022_auto_20210307_0000'),
-    ]
-
-    operations = [
-        migrations.AddField(
-            model_name='project',
-            name='dest_array_help',
-            field=models.CharField(choices=[('sftp', 'sftp'), ('ftps', 'ftps'), ('s3', 's3')], default='sftp', max_length=1024, verbose_name='dest.array.help'),
-        ),
-    ]
+  operations = [
+    migrations.AddField(
+      model_name='project',
+      name='dest_array_help',
+      field=models.CharField(choices=[('sftp', 'sftp'), ('ftps', 'ftps'), ('s3', 's3')], default='sftp', max_length=1024, verbose_name='dest.array.help'),
+    ),
+  ]

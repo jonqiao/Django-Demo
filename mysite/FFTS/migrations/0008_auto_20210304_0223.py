@@ -4,15 +4,14 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
+  dependencies = [
+    ('FFTS', '0007_auto_20210304_0213'),
+  ]
 
-    dependencies = [
-        ('FFTS', '0007_auto_20210304_0213'),
-    ]
-
-    operations = [
-        migrations.AlterField(
-            model_name='project',
-            name='business_flow',
-            field=models.CharField(help_text='e.g.: BU_SRC_TO_DEST_UAT', max_length=18, verbose_name='Business Flow'),
-        ),
-    ]
+  operations = [
+    migrations.AlterField(
+      model_name='project',
+      name='business_flow',
+      field=models.CharField(help_text='e.g.: BU_SRC_TO_DEST_UAT', max_length=18, verbose_name='Business Flow'),
+    ),
+  ]

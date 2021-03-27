@@ -4,15 +4,14 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
+  dependencies = [
+    ('FFTS', '0015_auto_20210304_1414'),
+  ]
 
-    dependencies = [
-        ('FFTS', '0015_auto_20210304_1414'),
-    ]
-
-    operations = [
-        migrations.AlterField(
-            model_name='project',
-            name='ffts_id',
-            field=models.CharField(default='Auto-Generation', max_length=47, verbose_name='FFTS ID'),
-        ),
-    ]
+  operations = [
+    migrations.AlterField(
+      model_name='project',
+      name='ffts_id',
+      field=models.CharField(default='Auto-Generation', max_length=47, verbose_name='FFTS ID'),
+    ),
+  ]
