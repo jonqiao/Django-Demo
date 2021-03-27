@@ -97,8 +97,8 @@ from django.contrib import admin
 from django.urls import include, path
 
 urlpatterns = [
-    path('polls/', include('polls.urls')),
-    path('admin/', admin.site.urls),
+  path('admin/', admin.site.urls),
+  path('polls/', include('polls.urls')),
 ]
 ```
 include语法相当于多级路由，它把接收到的url地址去除与此项匹配的部分，将剩下的字符串传递给下一级路由urlconf进行判断。
@@ -151,18 +151,50 @@ view指的是处理当前url请求的视图函数。当Django匹配到某个路�
 对你的URL进行命名，让你能够在Django的任意处，尤其是模板内显式地引用它。这是一个非常强大的功能，相当于给URL取了个全局变量名，不会将url匹配地址写死。
 
 
+## 六 admin后台管理站点
 
+1. 创建管理员用户
 
+  ```shell
+  $ python manage.py createsuperuser
+  ```
 
+2. 启动开发服务器
 
+  执行runserver命令启动服务器后，在浏览器访问http://127.0.0.1:8000/admin/。
+  小技巧：
+  在实际环境中，为了站点的安全性，我们一般不能将管理后台的url随便暴露给他人，不能用/admin/这么简单的路径。
+  
+  可以将根url路由文件mysite/urls.py中admin.site.urls对应的表达式，换成你想要的，比如：
+  
+  ```python
+  from django.contrib import admin 
+  from django.urls import path
+  
+  urlpatterns = [
+    path('admin/', admin.site.urls),
+    path('polls/', include('polls.urls')),
+  ]
+  ```
 
+  这样，我们必须访问http://127.0.0.1:8000/control/才能进入admin界面。
 
+3. 进入站点
 
+  利用刚才建立的admin账户，登陆admin，你将看到admin的界面。
 
+4. 注册投票应用
 
+  现在还无法看到投票应用，必须先在admin中进行注册，告诉admin站点，请将polls的模型加入站点内，接受站点的管理。
+  
+  打开polls/admin.py文件，加入下面的内容：
+  ```python
+  from django.contrib import admin
+  from .models import Question
+  
+  admin.site.register(Question)
+  ```
 
+5. 站点体验
 
-
-
-
-
+  注册question模型后，等待服务器重启动，然后刷新admin页面就能看到Question栏目了。
