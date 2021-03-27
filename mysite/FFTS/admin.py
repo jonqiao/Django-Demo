@@ -99,6 +99,7 @@ class ProjectAdmin(AjaxAdmin):
       obj.UPDATED_BY = request.user.username
       obj.save()
     if not obj.ffts_id or obj.ffts_id == 'Auto-Generation':
+      # obj.ffts_id = 'FFTS' + str(datetime.now().strftime('%y%j%H%M%S')) + '_' + obj.business_flow
       obj.ffts_id = 'FFTS' + str(obj.id).rjust(10, '0') + '_' + obj.business_flow
     obj.save()
 
