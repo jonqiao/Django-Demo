@@ -32,10 +32,10 @@ def find_xml_nodes(configfile, tag):
 
 
 def sync_from_xml(configfile, obj):
-  tree, nodes = find_xml_nodes(configfile, "project_variable")
+  tree, nodes = find_xml_nodes(configfile, 'project_variable')
   for node in nodes:
-    name = node.findtext('project_name', 'NOT.FOUND').replace('.', '_')
-    value = node.findtext('project_value', 'null')
+    name = node.findtext('project_name', default='NOT_FOUND').replace('.', '_')
+    value = node.findtext('project_value', default='null')
     setattr(obj, name, value)
     if name == 'source_resource':
       if value == 'null':
@@ -45,11 +45,11 @@ def sync_from_xml(configfile, obj):
 
 
 def sync_to_xml(configfile, obj):
-  tree, nodes = find_xml_nodes(configfile, "project_variable")
+  tree, nodes = find_xml_nodes(configfile, 'project_variable')
   for node in nodes:
-    name = node.findtext('project_name', 'NOT.FOUND').replace('.', '_')
+    name = node.findtext('project_name', default='NOT_FOUND').replace('.', '_')
     node.find('project_value').text = getattr(obj, name, 'null')
-  tree.write(configfile, encoding="utf-8", xml_declaration=True)
+  tree.write(configfile, encoding='utf-8', xml_declaration=True)
 
 
 @admin.register(Project)
@@ -58,13 +58,13 @@ class ProjectAdmin(AjaxAdmin):
   # save_as = True
   list_per_page = 100  # default 100
   list_max_show_all = 200  # default 200
-  readonly_fields = ('config_sync', "CREATED_BY", 'CREATED_TIME', 'UPDATED_BY', 'UPDATED_TIME',)
-  list_display = ('ffts_id', 'strategy', 'config_sync', "CREATED_BY", 'CREATED_TIME', 'UPDATED_BY', 'UPDATED_TIME',)
+  readonly_fields = ('config_sync', 'CREATED_BY', 'CREATED_TIME', 'UPDATED_BY', 'UPDATED_TIME',)
+  list_display = ('ffts_id', 'strategy', 'config_sync', 'CREATED_BY', 'CREATED_TIME', 'UPDATED_BY', 'UPDATED_TIME',)
   list_display_links = ('ffts_id',)
-  list_filter = ['strategy', 'config_sync', "CREATED_BY"]
+  list_filter = ['strategy', 'config_sync', 'CREATED_BY']
   date_hierarchy = 'CREATED_TIME'
   search_fields = ['ffts_id']
-  radio_fields = {"strategy": admin.HORIZONTAL}
+  radio_fields = {'strategy': admin.HORIZONTAL}
   fieldsets = [
     (None, {'fields': ['ffts_id', 'business_flow', 'strategy']}),
     ('Configuration',
@@ -225,10 +225,10 @@ class ProjectAdmin(AjaxAdmin):
   #       obj.UPDATED_TIME = timezone.now()
   #       obj.id = None
   #       data = serializers.serialize('json', [obj]).encode()
-  #       headers = {"Content-Type": "application/json"}
-  #       remote_req = urllib.request.Request("http://127.0.0.1:8000/ffts/api/project/", data=data, headers=headers)
+  #       headers = {'Content-Type': 'application/json'}
+  #       remote_req = urllib.request.Request('http://127.0.0.1:8000/ffts/api/project/', data=data, headers=headers)
   #       remote_res = urllib.request.urlopen(remote_req)
-  #       print(remote_res.read().decode("utf-8"))
+  #       print(remote_res.read().decode('utf-8'))
   #       count = count + 1
   #   self.message_user(request,
   #                     ngettext('%d project promoted successfully!',
@@ -266,10 +266,10 @@ class ProjectAdmin(AjaxAdmin):
           obj.UPDATED_TIME = timezone.now()
           obj.id = None
           data = serializers.serialize('json', [obj]).encode()
-          headers = {"Content-Type": "application/json"}
+          headers = {'Content-Type': 'application/json'}
           remote_req = urllib.request.Request(remote_link, data=data, headers=headers)
           remote_res = urllib.request.urlopen(remote_req)
-          # print(remote_res.read().decode("utf-8"))
+          # print(remote_res.read().decode('utf-8'))
           count = count + 1
       return JsonResponse(data={
         'status': 'success',
@@ -277,7 +277,7 @@ class ProjectAdmin(AjaxAdmin):
                         '%d projects promoted successfully!', count) % count
       })
 
-  # promote_project.short_description = "Promote project"
+  # promote_project.short_description = 'Promote project'
   promote_project.type = 'warning'
   promote_project.icon = 'el-icon-s-promotion'
   promote_project.layer = {

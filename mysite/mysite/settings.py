@@ -82,7 +82,7 @@ DATABASES = {
     'ENGINE': 'django.db.backends.sqlite3',
     'NAME': BASE_DIR / 'db.sqlite3',
   },
-  'defaultMySQL': {
+  'MySQL': {
     'ENGINE': 'django.db.backends.mysql',  # 数据库引擎
     'HOST': '192.168.1.121',  # mysql服务所在的主机ip
     'PORT': '3306',  # mysql服务端口
@@ -129,11 +129,11 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 STATICFILES_DIRS = [
-  BASE_DIR / "static_common",
+  BASE_DIR / 'static_common',
 ]
 
-# STATIC_ROOT = os.path.join(BASE_DIR, "static")
-STATIC_ROOT = BASE_DIR / "static_root"
+# STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+STATIC_ROOT = BASE_DIR / 'static_root'
 
 # simpleui configuration
 SIMPLEUI_STATIC_OFFLINE = True  # 离线模式
@@ -164,7 +164,7 @@ SIMPLEUI_CONFIG = {
 }
 
 # Application customer properties
-CONFIGDIR = "D://WORKSPACE//PSN-WORKSPACE//Django-Demo//configuration//"
-CONFIGTPL = "D://WORKSPACE//PSN-WORKSPACE//Django-Demo//configuration//template.xml"
-REMOTE_LINK_PRD = "http://127.0.0.1:8000/ffts/api/project/"
-REMOTE_LINK_NONPRD = "http://127.0.0.1:8000/ffts/api/project/"
+CONFIGDIR = 'D://WORKSPACE//PSN-WORKSPACE//Django-Demo//configuration//'
+CONFIGTPL = 'D://WORKSPACE//PSN-WORKSPACE//Django-Demo//configuration//template.xml'
+REMOTE_LINK_PRD = 'http://127.0.0.1:8000/ffts/api/project/'
+REMOTE_LINK_NONPRD = 'http://127.0.0.1:8000/ffts/api/project/'

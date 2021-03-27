@@ -12,11 +12,11 @@ class ChoiceInline(admin.StackedInline):
   model = Choice
   extra = 0
   readonly_fields = ('CREATED_BY', 'CREATED_TIME', 'UPDATED_BY', 'UPDATED_TIME')
-  radio_fields = {"choice_text": admin.HORIZONTAL}
+  radio_fields = {'choice_text': admin.HORIZONTAL}
   fieldsets = (
     ('-- Item-Content', {
       'classes': ('wide', 'collapse'),
-      'fields': (("CREATED_BY", 'CREATED_TIME', 'UPDATED_BY', 'UPDATED_TIME'), 'choice_text', 'votes')
+      'fields': (('CREATED_BY', 'CREATED_TIME', 'UPDATED_BY', 'UPDATED_TIME'), 'choice_text', 'votes')
     }),
   )
 
@@ -26,7 +26,7 @@ class QuestionAdmin(admin.ModelAdmin):
   inlines = [ChoiceInline]
   list_per_page = 50  # default 100
   list_max_show_all = 200  # default 200
-  readonly_fields = ("CREATED_BY", 'CREATED_TIME', 'UPDATED_BY', 'UPDATED_TIME',)
+  readonly_fields = ('CREATED_BY', 'CREATED_TIME', 'UPDATED_BY', 'UPDATED_TIME',)
   list_display = ('question_text', 'pub_date', 'was_published_recently', 'sync_config', 'CREATED_BY', 'CREATED_TIME', 'UPDATED_BY', 'UPDATED_TIME',)
   list_display_links = ('question_text',)
   list_filter = ['pub_date']
@@ -75,7 +75,7 @@ def handle_config_file(self, obj):
   pass
 
 # class ChoiceAdmin(admin.ModelAdmin):
-#   readonly_fields = ("CREATED_BY", 'CREATED_TIME', 'UPDATED_BY', 'UPDATED_TIME',)
+#   readonly_fields = ('CREATED_BY', 'CREATED_TIME', 'UPDATED_BY', 'UPDATED_TIME',)
 #   list_display = ('question', 'choice_text', 'votes', 'CREATED_BY', 'CREATED_TIME', 'UPDATED_BY', 'UPDATED_TIME',)
 #   list_display_links = ('choice_text',)
 #   search_fields = ['choice_text']
