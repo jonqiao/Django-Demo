@@ -47,7 +47,6 @@ class QuestionAdmin(admin.ModelAdmin):
       obj.save()
       obj.question_text = 'FFTS-bak' + str(obj.id).rjust(10, '0') + '_' + obj.question_text
     obj.save()
-    handle_config_file(self, obj)
 
   def save_formset(self, request, form, formset, change):
     instances = formset.save(commit=False)
@@ -64,15 +63,6 @@ class QuestionAdmin(admin.ModelAdmin):
       instance.save()
     formset.save_m2m()
 
-
-def handle_config_file(self, obj):
-  # TODO 1: if config file exist, backup it with datetime suffix
-  #         else create config file by copying from config-template
-  # TODO 2: update config file with ojb new values
-  # TODO 3: update model sync_config = 'Y'
-  # obj.sync_config = 'Y'
-  # obj.save()
-  pass
 
 # class ChoiceAdmin(admin.ModelAdmin):
 #   readonly_fields = ('CREATED_BY', 'CREATED_TIME', 'UPDATED_BY', 'UPDATED_TIME',)

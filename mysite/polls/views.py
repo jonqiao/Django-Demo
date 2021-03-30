@@ -8,6 +8,7 @@ from .models import Question, Choice
 
 # Create your views here.
 def fbv_index(request):
+  # get_list_or_404() -> Question.objects.filter()
   latest_question_list = Question.objects.order_by('-pub_date')[:5]
   context = {'latest_question_list': latest_question_list}
   return render(request, 'polls/fbvIndex.html', context)
@@ -33,6 +34,7 @@ class DetailView(generic.DetailView):
 
 
 def fbv_results(request, question_id):
+  # get_object_or_404() -> Question.objects.get()
   question = get_object_or_404(Question, pk=question_id)
   return render(request, 'polls/fbvResults.html', {'question': question})
 
