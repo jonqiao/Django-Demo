@@ -38,6 +38,7 @@ Django的开发服务器（以后简称服务器）默认运行在内部的8000�
 ```shell
 $ python manage.py runserver
 $ python manage.py runserver 8080
+$ python manage.py runserver 0.0.0.0:8000 # 这样外网就能访问这个dev server了
 $ python manage.py runserver 0:8000  #0 是 0.0.0.0 的简写
 ```
 
@@ -155,9 +156,9 @@ view指的是处理当前url请求的视图函数。当Django匹配到某个路�
 
 1. 创建管理员用户
 
-  ```shell
-  $ python manage.py createsuperuser
-  ```
+```shell
+$ python manage.py createsuperuser
+```
 
 2. 启动开发服务器
 
@@ -167,15 +168,15 @@ view指的是处理当前url请求的视图函数。当Django匹配到某个路�
   
   可以将根url路由文件mysite/urls.py中admin.site.urls对应的表达式，换成你想要的，比如：
   
-  ```python
-  from django.contrib import admin 
-  from django.urls import path
+```python
+from django.contrib import admin 
+from django.urls import include, path
   
-  urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('polls/', include('polls.urls')),
-  ]
-  ```
+urlpatterns = [
+  path('admin/', admin.site.urls),
+  path('polls/', include('polls.urls')),
+]
+```
 
   这样，我们必须访问http://127.0.0.1:8000/control/才能进入admin界面。
 
@@ -188,12 +189,12 @@ view指的是处理当前url请求的视图函数。当Django匹配到某个路�
   现在还无法看到投票应用，必须先在admin中进行注册，告诉admin站点，请将polls的模型加入站点内，接受站点的管理。
   
   打开polls/admin.py文件，加入下面的内容：
-  ```python
-  from django.contrib import admin
-  from .models import Question
-  
-  admin.site.register(Question)
-  ```
+```python
+from django.contrib import admin
+from .models import Question
+
+admin.site.register(Question)
+```
 
 5. 站点体验
 
