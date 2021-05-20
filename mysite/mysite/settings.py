@@ -30,6 +30,8 @@ DEBUG = bool(os.environ.get('DJANGO_DEBUG', True))
 ALLOWED_HOSTS = ['*']
 
 # Application definition
+# 要将应用添加到项目中,需要在INSTALLED_APPS设置中增加指向该应用的配置文件的链接.
+# 配置的点式路径为polls.apps.PollsConfig,但在多数情况下,我们简写成‘polls’就可以了.
 
 INSTALLED_APPS = [
   'simpleui',
@@ -39,8 +41,8 @@ INSTALLED_APPS = [
   'django.contrib.sessions',
   'django.contrib.messages',
   'django.contrib.staticfiles',
+  'polls.apps.PollsConfig',
   'login',
-  'polls',
   'FFTS',
 ]
 
@@ -147,21 +149,21 @@ SIMPLEUI_HOME_QUICK = True
 SIMPLEUI_HOME_ACTION = True
 SIMPLEUI_LOADING = True
 
-SIMPLEUI_CONFIG = {
-  'system_keep': True,  # 关闭系统菜单
-  'dynamic': False,  # 设置是否开启动态菜单, 默认为False. 如果开启, 则会在每次用户登陆时动态展示菜单内容
-  'menu_display': ['Authentication and Authorization', 'FFTS'],
-  'menus': [{
-    'app': 'FFTS',
-    'name': 'FFTS',
-    'icon': 'fas fa-bicycle',
-    'models': [{
-      'name': 'Project',
-      'icon': 'far fa-surprise',
-      'url': '/admin/FFTS/project/'
-    }]
-  }]
-}
+# SIMPLEUI_CONFIG = {
+#   'system_keep': True,  # 关闭系统菜单
+#   'dynamic': False,  # 设置是否开启动态菜单, 默认为False. 如果开启, 则会在每次用户登陆时动态展示菜单内容
+#   'menu_display': ['Authentication and Authorization', 'FFTS'],
+#   'menus': [{
+#     'app': 'FFTS',
+#     'name': 'FFTS',
+#     'icon': 'fas fa-bicycle',
+#     'models': [{
+#       'name': 'Project',
+#       'icon': 'far fa-surprise',
+#       'url': '/admin/FFTS/project/'
+#     }]
+#   }]
+# }
 
 # Application customer properties
 CONFIGDIR = 'D://WORKSPACE//PSN-WORKSPACE//Django-Demo//configuration//'
