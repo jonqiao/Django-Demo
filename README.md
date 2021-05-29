@@ -37,9 +37,9 @@ Django提供了一个用于开发的web服务器，使你无需配置一个类�
 Django的开发服务器（以后简称服务器）默认运行在内部的8000端口，如果你想指定端口，请在命令中显示给出：
 ```shell
 $ python manage.py runserver
-$ python manage.py runserver 8080
-$ python manage.py runserver 0.0.0.0:8000 # 这样外网就能访问这个dev server了
-$ python manage.py runserver 0:8000  #0 是 0.0.0.0 的简写
+$ python manage.py runserver 9527
+$ python manage.py runserver 0.0.0.0:9527 # 这样外网就能访问这个dev server了
+$ python manage.py runserver 0:9527  #0 是 0.0.0.0 的简写
 ```
 
 
