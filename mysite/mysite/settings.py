@@ -149,21 +149,22 @@ SIMPLEUI_HOME_QUICK = True
 SIMPLEUI_HOME_ACTION = True
 SIMPLEUI_LOADING = True
 
-# SIMPLEUI_CONFIG = {
-#   'system_keep': True,  # 关闭系统菜单
-#   'dynamic': False,  # 设置是否开启动态菜单, 默认为False. 如果开启, 则会在每次用户登陆时动态展示菜单内容
-#   'menu_display': ['Authentication and Authorization', 'FFTS'],
-#   'menus': [{
-#     'app': 'FFTS',
-#     'name': 'FFTS',
-#     'icon': 'fas fa-bicycle',
-#     'models': [{
-#       'name': 'Project',
-#       'icon': 'far fa-surprise',
-#       'url': '/admin/FFTS/project/'
-#     }]
-#   }]
-# }
+SIMPLEUI_CONFIG = {
+  'system_keep': True,  # 关闭系统菜单
+  'dynamic': False,  # 设置是否开启动态菜单, 默认为False. 如果开启, 则会在每次用户登陆时动态展示菜单内容
+  # 'menu_display': ['Authentication and Authorization', 'FFTS'],
+  'menu_display': ['FFTS'],
+  'menus': [{
+    'app': 'FFTS',
+    'name': 'FFTS',
+    'icon': 'fas fa-bicycle',
+    'models': [{
+      'name': 'Project',
+      'icon': 'far fa-surprise',
+      'url': '/admin/FFTS/project/'
+    }]
+  }]
+}
 
 # Application customer properties
 CONFIGDIR = 'D://WORKSPACE//PSN-WORKSPACE//Django-Demo//configuration//'
