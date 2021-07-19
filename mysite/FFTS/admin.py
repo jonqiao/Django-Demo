@@ -92,7 +92,8 @@ class ProjectAdmin(AjaxAdmin):
           }
          ),
     ]
-    actions = ['sync_to_configfile', 'sync_from_configfile', 'sync_init_configfile', 'promote_project']
+    # actions = ['sync_to_configfile', 'sync_from_configfile', 'sync_init_configfile', 'promote_project']
+    actions = ['sync_to_configfile', 'sync_from_configfile', 'sync_init_configfile']
 
     def has_add_permission(self, request):
         # 禁用添加按钮
@@ -101,9 +102,9 @@ class ProjectAdmin(AjaxAdmin):
     def has_change_permission(self, request, obj=None):
         return False
 
-    def has_delete_permission(self, request, obj=None):
-        # 禁用删除按钮
-        return False
+    # def has_delete_permission(self, request, obj=None):
+    #     # 禁用删除按钮
+    #     return False
 
     # second way to disable delete action for this model only
     # def get_actions(self, request):

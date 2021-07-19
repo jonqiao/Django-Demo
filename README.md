@@ -199,3 +199,14 @@ admin.site.register(Question)
 5. 站点体验
 
   注册question模型后，等待服务器重启动，然后刷新admin页面就能看到Question栏目了。
+
+
+6. 如果关闭debug模式后，请执行以下命令将simpleui静态文件静态文件克隆到根目录
+```
+python3 manage.py collectstatic
+```
+
+7. 克隆静态文件出错 请在settings.py文件中加入：
+```
+STATIC_ROOT = os.path.join(BASE_DIR, "static")
+```

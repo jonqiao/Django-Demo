@@ -70,6 +70,10 @@ TEMPLATES = [
         'django.contrib.auth.context_processors.auth',
         'django.contrib.messages.context_processors.messages',
       ],
+      # 添加这个option,就不需要每次在模板中加载静态文件都是用load加载static标签 {% load static %}
+      'builtins': [
+        'django.templatetags.static'
+      ],
     },
   },
 ]
@@ -127,7 +131,7 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
-
+# STATIC_URL用于引用STATIC_ROOT所指向的静态文件。
 STATIC_URL = '/static/'
 
 STATICFILES_DIRS = [
